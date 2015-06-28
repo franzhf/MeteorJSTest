@@ -1,0 +1,29 @@
+<head>
+  <title>Task List</title>
+</head>
+
+<body>
+  <h1>Task List</h1>
+  <!-- Using Template -->
+  {{> Activity}}
+</body>
+<!-- Declaring Template -->
+<template name="Activity">
+  
+  {{#each activities}}
+	  <div>
+	    {{#if isEditing}}
+	    	<input>	    
+	    {{else}}
+	    	<label class="item-task-label">{{activityName}}</label>
+	    	{{#if isEditing}}
+	    		<div>Hello</div>>
+	    	{{/if}}
+	    {{/if}}	
+	   	<button class="delete">Delete</button>
+	  </div>
+	 
+  {{/each}}
+  <button id="add-button">Add</button>
+  <div>#Items {{items}}</div>
+</template>
