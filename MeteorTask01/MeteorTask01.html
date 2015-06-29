@@ -6,6 +6,7 @@
   <h1>Task List</h1>
   <!-- Using Template -->
   {{> Activity}}
+  {{> Task}}
 </body>
 <!-- Declaring Template -->
 <template name="Activity">
@@ -13,17 +14,42 @@
   {{#each activities}}
 	  <div>
 	    {{#if isEditing}}
-	    	<input>	    
+	    	<input value="{{activityName}}">	    
 	    {{else}}
-	    	<label class="item-task-label">{{activityName}}</label>
-	    	{{#if isEditing}}
-	    		<div>Hello</div>>
-	    	{{/if}}
+	    	<label class="lbl-item-task ">{{activityName}}</label>	    	
 	    {{/if}}	
-	   	<button class="delete">Delete</button>
+	   	<button class="btn-delete btn btn-danger">Delete</button>
+	   	<button class="btn-edit btn btn-primary">Edit</button>
 	  </div>
 	 
   {{/each}}
-  <button id="add-button">Add</button>
+  <button id="btn-add" class="btn btn-success">Add</button>
   <div>#Items {{items}}</div>
+</template>
+
+<template name="Task">
+{{#with taskSelected}}
+  <div class="modal fade in" id="editTaskModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Edit a task</h4>
+        </div>
+        <div class="modal-body">
+        	<form class="form-inline">
+	        	<div class="form-group">
+					<label for="tskName">Name</label>
+					<input type="text" class="form-control" id="tskName" placeholder="" value="{{activityName}}">
+				</div>	        	
+        	</form>
+        </div>
+        <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save</button>
+      	</div>
+      </div>
+    </div>
+  </div>
+{{/with}}  
 </template>
