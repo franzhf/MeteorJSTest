@@ -1,4 +1,15 @@
-Template.signUp.events({
+
+/*Template.signup.helpers({
+  errorMessages: function() {
+    return _.values(Session.get(ERRORS_KEY));
+  },
+  errorClass: function(key) {
+    return Session.get(ERRORS_KEY)[key] && 'error';
+  }
+});
+
+Template.signup.events({
+
 	'submit form': function (event, template) {
 		event.preventDefault();
 		console.log("sign up");
@@ -19,4 +30,4 @@ Template.signUp.events({
 			console.log(resp);
 		});
 	}
-});
+});*/

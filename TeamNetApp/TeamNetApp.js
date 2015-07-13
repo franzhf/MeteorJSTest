@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   Meteor.Router.add({
-    '/signIn': 'signIn',
-    '/signUp' : 'signUp'
+    '/signin': 'signin',
+    '/signup' : 'signup'
   })
 
 }
