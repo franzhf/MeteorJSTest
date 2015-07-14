@@ -1,10 +1,10 @@
 var ERRORS_KEY = 'signupErrors';
-
-Template.join.onCreated(function() {
+Template.signup.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
 
-Template.join.helpers({
+
+Template.signup.helpers({
   errorMessages: function() {
     return _.values(Session.get(ERRORS_KEY));
   },
@@ -13,7 +13,7 @@ Template.join.helpers({
   }
 });
 
-Template.join.events({
+Template.signup.events({
   'submit': function(event, template) {
     event.preventDefault();
     var email = template.$('[name=email]').val();
@@ -47,7 +47,7 @@ Template.join.events({
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
 
-      Router.go('home');
+      Router.go('profile');
     });
   }
 });
