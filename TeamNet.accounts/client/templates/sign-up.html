@@ -8,8 +8,8 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Join.</h1>
-        <p class="subtitle-auth" >Joining allows you to make private lists</p>
+        <h1 class="title-auth">Sign Up.</h1>
+        <p class="subtitle-auth" ></p>
 
         <form>
           {{#if errorMessages}}
@@ -19,6 +19,17 @@
               {{/each}}
             </div>
           {{/if}}
+
+
+          <div class="input-symbol  {{errorClass 'password'}}">
+            <input type="name" name="name" placeholder="Name" />
+            <span class="icon-lock" title="Name"></span>
+          </div>
+
+          <div class="input-symbol  {{errorClass 'lastName'}}">
+            <input type="lastName" name="lastName" placeholder="Last Name" />
+            <span class="icon-lock" title="Name"></span>
+          </div>
 
           <div class="input-symbol  {{errorClass 'email'}}">
             <input type="email" name="email" placeholder="Your Email" />
@@ -34,6 +45,7 @@
             <input type="password" name="confirm" placeholder="Confirm Password" />
             <span class="icon-lock" title="Confirm Password"></span>
           </div>
+
 
           <button type="submit" class="btn-primary">Join Now</button>
         </form>

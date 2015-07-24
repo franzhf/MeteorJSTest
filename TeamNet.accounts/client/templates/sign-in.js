@@ -34,7 +34,29 @@ Template.signin.events({
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
+
+      var user = Meteor.user();      
+      var profile = user.profile;
+      console.log( Meteor.user());
+      console.log('Welcome!!!   ' + profile);     
       Router.go('profile');
     });
-  }
+  },
+
+  'click #btn-pwd-recovery' : function(event) {
+    console.log(Meteor.user())
+    console.log("pwd recovery");
+    
+    if (Meteor.user()){
+      var email = Meteor.user().emails[0].address;
+      var options = {
+          email: email
+      }
+      Accounts.forgotPassword(options, function(error){
+        console.log(error);
+      })
+    }    
+  }  
+
 });
+

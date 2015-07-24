@@ -18,7 +18,8 @@ Template.signin.events({
     event.preventDefault();
     
     var email = template.$('[name=email]').val();
-    var password = template.$('[name=password]').val();    
+    var password = template.$('[name=password]').val();
+    
     var errors = {};
 
     if (! email) {
@@ -37,7 +38,8 @@ Template.signin.events({
     Meteor.loginWithPassword(email, password, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
-      }      
+      }
+      
       Router.go('home');
     });
   }

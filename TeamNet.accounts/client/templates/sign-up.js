@@ -16,11 +16,23 @@ Template.signup.helpers({
 Template.signup.events({
   'submit': function(event, template) {
     event.preventDefault();
+
+    var name = template.$('[name=name]').val();
+    var lastName = template.$('[name=lastName]').val();
     var email = template.$('[name=email]').val();
     var password = template.$('[name=password]').val();
     var confirm = template.$('[name=confirm]').val();
 
     var errors = {};
+
+    if (! name) {
+      errors.email = 'name required';
+    }
+
+    if (! lastName) {
+      errors.lastName = 'lastName required';
+    }
+
 
     if (! email) {
       errors.email = 'Email required';
@@ -40,14 +52,20 @@ Template.signup.events({
     }
 
     Accounts.createUser({
+      username: name,
+      lastName: lastName,
+      profile: {
+        name: name,
+        lastName: lastName
+      },
       email: email,
-      password: password
+      password: password      
     }, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
 
-      Router.go('profile');
+      Router.go('signin');
     });
   }
 });

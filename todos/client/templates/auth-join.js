@@ -1,4 +1,4 @@
-var ERRORS_KEY = 'signupErrors';
+var ERRORS_KEY = 'joinErrors';
 
 Template.join.onCreated(function() {
   Session.set(ERRORS_KEY, {});

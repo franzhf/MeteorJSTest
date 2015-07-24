@@ -8,7 +8,7 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Sign In.</h1>    
+        <h1 class="title-auth">Sign In.</h1>         
         <form>
           {{#if errorMessages}}
             <div class="list-errors">
@@ -33,6 +33,7 @@
       </div>
 
       <a href="{{pathFor 'signup'}}" class="link-auth-alt">Need an account? Join Now.</a>
+      <button type="button" class="btn btn-info" id="btn-pwd-recovery">Request of password recovery</button>
     </div>
   </div>
 </template>
