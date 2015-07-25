@@ -32,6 +32,7 @@ Template.signin.events({
     
     Meteor.loginWithPassword(email, password, function(error) {
       if (error) {
+        console.log(error);
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
 
@@ -43,19 +44,15 @@ Template.signin.events({
     });
   },
 
-  'click #btn-pwd-recovery' : function(event) {
-    console.log(Meteor.user())
-    console.log("pwd recovery");
-    
-    if (Meteor.user()){
-      var email = Meteor.user().emails[0].address;
+  'click #btn-pwd-recovery' : function(event, template) {     
+      console.log("pwd recovery");
+      var email = 'franzhflores@gmail.com';   
       var options = {
-          email: email
+            email: email
       }
-      Accounts.forgotPassword(options, function(error){
-        console.log(error);
-      })
-    }    
+    Accounts.forgotPassword(options, function(error){
+      console.log(error);
+    });    
   }  
 
 });
