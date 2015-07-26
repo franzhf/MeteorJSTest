@@ -15,8 +15,7 @@ Template.signin.helpers({
 
 Template.signin.events({
   'submit': function(event, template) {
-    event.preventDefault();
-    
+    event.preventDefault();    
     var email = template.$('[name=email]').val();
     var password = template.$('[name=password]').val();    
     var errors = {};
@@ -28,32 +27,24 @@ Template.signin.events({
     if (! password) {
       errors.password = 'Password is required';
     }  
-   
     
+     Session.set(ERRORS_KEY, errors);
+    if (_.keys(errors).length) {
+      return;
+    }
+   
     Meteor.loginWithPassword(email, password, function(error) {
       if (error) {
-        console.log(error);
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
 
-      var user = Meteor.user();      
+      var user = Meteor.user(); //Get the current user record, or null if no user is logged in. A reactive data source.
       var profile = user.profile;
       console.log( Meteor.user());
       console.log('Welcome!!!   ' + profile);     
       Router.go('profile');
     });
-  },
-
-  'click #btn-pwd-recovery' : function(event, template) {     
-      console.log("pwd recovery");
-      var email = 'franzhflores@gmail.com';   
-      var options = {
-            email: email
-      }
-    Accounts.forgotPassword(options, function(error){
-      console.log(error);
-    });    
-  }  
+  } 
 
 });
 

@@ -19,6 +19,8 @@ Router.map(function() {
     //cada ruta debe apuntar a una plantilla
     this.route('signin');
     this.route('signup');
+    this.route('forgotpassword');
+
     this.route('profile', {
       path: '/',
       onBeforeAction: function(){

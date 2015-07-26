@@ -26,46 +26,61 @@ Template.signup.events({
     var errors = {};
 
     if (! name) {
-      errors.email = 'name required';
+      errors.name = 'Name is required';
     }
 
     if (! lastName) {
-      errors.lastName = 'lastName required';
+      errors.lastName = 'Last Name is required';
     }
 
 
     if (! email) {
-      errors.email = 'Email required';
+      errors.email = 'Email is required';
     }
 
     if (! password) {
-      errors.password = 'Password required';
+      errors.password = 'Password is required';
     }
 
     if (confirm !== password) {
       errors.confirm = 'Please confirm your password';
     }
 
-    Session.set(ERRORS_KEY, errors);
-    if (_.keys(errors).length) {
-      return;
-    }
+    //Calls a server method if the entry email alredy exists on DB, it will return true otherwise false
+    Meteor.call('isDuplicateEmail', email, function (error, result) {
 
-    Accounts.createUser({
-      username: name,
-      lastName: lastName,
-      profile: {
-        name: name,
-        lastName: lastName
-      },
-      email: email,
-      password: password      
-    }, function(error) {
-      if (error) {
-        return Session.set(ERRORS_KEY, {'none': error.reason});
-      }
+      console.log(error);
+      console.log(result);
+      if (!error){
+        if(result){
+          errors.duplicateEmail = 'The email already exists';
+        }
 
-      Router.go('signin');
+        Session.set(ERRORS_KEY, errors);
+          if (_.keys(errors).length) {
+            return;
+          }      
+          Accounts.createUser({
+              username: name,            
+              profile: {
+                name: name,
+                lastName: lastName
+              },
+              email: email,
+              password: password      
+          }, function(error) {
+              if (error) {
+                return Session.set(ERRORS_KEY, {'none': error.reason});
+              }
+
+              Router.go('profile');
+          });
+        }    
     });
   }
 });
+
+
+function createUser(name, lastName, email, password) {  
+
+}

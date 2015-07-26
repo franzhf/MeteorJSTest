@@ -1,12 +1,12 @@
 
 //client Run code when a client or a server starts.
 Meteor.startup(function () {
-  console.log('server side')
+    Meteor.subscribe('allUsers');
 });
 
 Template.appBody.events({ 
-  'click .js-logout': function() {
-   Meteor.logout();   
+  'click #log-out': function() {
+      Meteor.logout();
   }  
 });
 

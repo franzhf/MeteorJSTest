@@ -1,57 +1,53 @@
 <template name="signup">
-  <div class="page auth">
-    <nav>
-      <div class="nav-group">
-        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
-      </div>
-    </nav>
+  <div class="panel panel-primary panel-user-account">
+     <div class="panel-heading">
+          <h3 class="panel-title">Create an account</h3>
+     </div>
+     <div class="panel-body">
+         <form class="form-horizontal" role="form">
+           {{#if errorMessages}}
+                <div class="list-errors">
+                  {{#each errorMessages}}
+                    <div class="alert alert-danger" role="alert">{{this}}
+                    </div>
+                  {{/each}}
+                </div>
+            {{/if}}
 
-    <div class="content-scrollable">
-      <div class="wrapper-auth">
-        <h1 class="title-auth">Sign Up.</h1>
-        <p class="subtitle-auth" ></p>
-
-        <form>
-          {{#if errorMessages}}
-            <div class="list-errors">
-              {{#each errorMessages}}
-                <div class="list-item">{{this}}</div>
-              {{/each}}
+            <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input type="text" class="form-control" name="name" placeholder="Name" />
             </div>
-          {{/if}}
 
+            <div class="input-group">
+               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input type="text" class="form-control" name="lastName" placeholder="Last Name" />
+            </div>
 
-          <div class="input-symbol  {{errorClass 'password'}}">
-            <input type="name" name="name" placeholder="Name" />
-            <span class="icon-lock" title="Name"></span>
-          </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input type="email" class="form-control" name="email" placeholder="Email Address" />
+            </div>
 
-          <div class="input-symbol  {{errorClass 'lastName'}}">
-            <input type="lastName" name="lastName" placeholder="Last Name" />
-            <span class="icon-lock" title="Name"></span>
-          </div>
+            <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>  
+              <input type="password" class="form-control" name="password" placeholder="Password" />
+            </div>
 
-          <div class="input-symbol  {{errorClass 'email'}}">
-            <input type="email" name="email" placeholder="Your Email" />
-            <span class="icon-email" title="Your Email"></span>
-          </div>
+            <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>  
+              <input type="password" class="form-control" name="confirm" placeholder="Confirm Password"/>
+            </div>
 
-          <div class="input-symbol  {{errorClass 'password'}}">
-            <input type="password" name="password" placeholder="Password" />
-            <span class="icon-lock" title="Password"></span>
-          </div>
-
-          <div class="input-symbol {{errorClass 'confirm'}}">
-            <input type="password" name="confirm" placeholder="Confirm Password" />
-            <span class="icon-lock" title="Confirm Password"></span>
-          </div>
-
-
-          <button type="submit" class="btn-primary">Join Now</button>
+           <span class="input-group-btn pull-right btn-sign-in">
+              <button type="submit" class="btn btn-primary">Save</button>
+           </span>
         </form>
-      </div>
-
-      <a href="{{pathFor 'signin'}}" class="link-auth-alt">Have an account? Sign in</a>
-    </div>
-  </div>
+     </div>
+       <div class="panel-footer">
+          <div class="btn-group-vertical">
+            <a href="{{pathFor 'signin'}}" class="link-auth-alt">Have an account? Sign in</a>           
+          </div>
+       </div>
+   </div>
 </template>
