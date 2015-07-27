@@ -7,6 +7,7 @@ Meteor.startup(function () {
 Template.appBody.events({ 
   'click #log-out': function() {
       Meteor.logout();
+      Router.go('signin');
   }  
 });
 

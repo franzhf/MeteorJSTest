@@ -1,34 +1,31 @@
 if(Meteor.isServer)
 {
-
-	/*Meteor.publish('allUsers', function () {
-		return Meteor.users.find({}, {
-			fields: {
-				'profile.email': 1
-			}			
-		});
-	});*/
-	
-	//Send Email with Meteor and gmail
-	//Setup the MAIL_URL
+	// Setup the MAIL_URL
+	// 
 	smtp = {
-	    username: 'franzhflores@gmail.com',   // eg: server@gentlenode.com
-	    password: '_1q2w3e4r',   // eg: 3eeP1gtizk5eziohfervU
-	    server:   'smtp.gmail.com',  // eg: mail.gandi.net
-	    port: 465
+	    username: 'franzmeteortest@gmail.com',
+	    password: 'Control123',
+	    server:   'smtp.gmail.com',
+	    port: 587
 	}
- 	process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
-
- 	// Test send an Email
+ 	process.env.MAIL_URL = 'smtp://' + 
+ 	                        encodeURIComponent(smtp.username) + ':' + 
+ 	                        encodeURIComponent(smtp.password) + '@' + 
+ 	                        encodeURIComponent(smtp.server) + ':' + 
+ 	                        smtp.port;
+	console.log(process.env.MAIL_URL);
+	// Test the Email packege
  	/*Email.send({
 	  from: "franzhflores@gmail.com",
-	  to: "franzhflores@gmail.com",
+	  to: "franzmeteortest@gmail.com",
 	  subject: "Meteor Can Send Emails via Gmail",
 	  text: "Its pretty easy to send emails via gmail."
-	},  function(err){ console.log(err)});*/
-	
+	},  function(err){ console.log(err)});
+	*/
 }
 
+// verify if the email already exists on the user collections
+// 
 Meteor.methods({
 	isDuplicateEmail: function(email){
 		var emailExists = false;		
